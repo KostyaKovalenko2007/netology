@@ -119,8 +119,8 @@ class Homework:
 
 if __name__ == "__main__":
     homework = Homework()
-    #print("Задача №1:")
-    #print(homework.read_cookbook_from_file('recipes.txt'))
-    #print("Задача №2:")
-    #print(homework.get_shop_list_by_dishes(['Запеченный картофель', 'Омлет', 'Фахитос'], 2))
-    print(homework.join_in_advance(['sorted\\1.txt','sorted\\2.txt','sorted\\3.txt'],"sorted.txt"))
+    print("Задача №1:")
+    print(homework.read_cookbook_from_file('recipes.txt'))
+    print("Задача №2:")
+    print(homework.get_shop_list_by_dishes(['Запеченный картофель', 'Омлет', 'Фахитос'], 2))
+    homework.join_in_advance(['sorted\\1.txt','sorted\\2.txt','sorted\\3.txt'],"sorted.txt")
