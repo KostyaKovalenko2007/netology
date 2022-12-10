@@ -283,3 +283,4 @@ if __name__=="__main__":
     print(students_avr_grade_by_course([best_student,dumb_student],'Voodoo'))
     print('Задание № 4. Полевые испытания. Par#2')
     print(lectures_avr_grade_by_course([worst_lector, cool_lector], 'Кулинария'))
+
