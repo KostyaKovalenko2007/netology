@@ -1,5 +1,5 @@
 import requests
-from datetime import datetime,date,timedelta
+from datetime import datetime,timedelta
 import os
 
 class Task1():
@@ -82,30 +82,37 @@ class Task3:
         Самый важный сайт для программистов это stackoverflow. И у него тоже есть API Нужно написать программу,
         которая выводит все вопросы за последние два дня и содержит тэг 'Python'. Для этого задания токен не требуется.
     '''
-    base_url = 'https://api.stackexchange.com/2.3/search'
-    #https://api.stackexchange.com/2.3/search?fromdate=1670544000&order=desc&sort=activity&tagged=Python&site=stackoverflow
     def __init__(self):
         pass
+    def date_ofset(self,time_delta=2):
+        dt = datetime(year=datetime.today().year,month=datetime.today().month, day=datetime.today().day,
+                      hour=3,minute=0,second=0) - timedelta(days=time_delta)
+        return int(dt.timestamp())
 
-    def __date__(self,time_delta):
-        pass
-    def get_questions(self,tags=['python'],time_delta=0):
-        pass
+    def get_questions(self,tags='python',time_delta=0):
+        url = f"https://api.stackexchange.com/2.3/search?fromdate={self.date_ofset(time_delta)}" \
+                            f"&order=desc&sort=activity&tagged={tags}&site=stackoverflow"
+        resp = requests.get(url)
+        if resp.status_code==200:
+            return resp.json()['items']
+        return []
+
 
 if __name__=="__main__":
 
-    #task1 = Task1()
-    #print(task1.get_most_intelligence())
+    task1 = Task1()
+    print(task1.get_most_intelligence())
 
     # Task#2
-    '''path_to_file = "homework.py"
+    path_to_file = "homework.py"
     token = os.getenv('token')
     uploader = YaUploader(token)
-    uploader.upload(path_to_file)'''
+    uploader.upload(path_to_file)
 
     #Task3
-    dt = datetime.today() - timedelta(days=2)
-    print(dt.timestamp())
+    task3 = Task3()
+    for question in task3.get_questions(tags='python', time_delta=3):
+        print(question['question_id'], question['title'])
 
 
 
